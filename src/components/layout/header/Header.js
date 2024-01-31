@@ -1,9 +1,36 @@
-import React from 'react';
-import LogoImg from "../../../assets/images/logo.png"
+import React, { useEffect, useRef, useState } from 'react'
+import './Header.css'
+
+import LogoImg from '../../../assets/images/logo.png'
+
+
 const Header = () => {
+
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  const isMount = useRef(false)
+  useEffect(() => {
+    if (!isMount.current) {
+
+      if (window.scrollY > 60) {
+        setIsScrolled(true)
+      }
+
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 60) {
+          setIsScrolled(true)
+        } else {
+          setIsScrolled(false)
+        }
+      })
+
+      isMount.current = true
+    }
+  }, [])
   return (
-    <header className="header scrolled">
+    <header className={` header  ${isScrolled ? 'scrolled' : ''} `}>
       <div className="container">
+
         <div className="header_row">
           {/* brand  */}
           <div className="header_brand">
@@ -21,7 +48,7 @@ const Header = () => {
         </div>
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

@@ -1,6 +1,7 @@
 import React from 'react';
 import BudgetNumber from './BudgetNumber';
 import './Hero.css';
+import { Coins, Wallet, CreditCard } from 'phosphor-react'
 const Hero = () => {
   return (
     <div className="hero_budget">
@@ -10,17 +11,18 @@ const Hero = () => {
       <div className="container">
         <div className="hero_budget-numbers">
           <BudgetNumber money="500" title="total money">
-            icon
+            <Coins weight="duotone" />
           </BudgetNumber>
           <BudgetNumber money="500" title="total income">
-            icon
+            <Wallet weight="duotone" />
           </BudgetNumber>
           <BudgetNumber money="500" title="total expanse">
-            icon
+            <CreditCard weight="duotone" />
           </BudgetNumber>
         </div>
       </div>
     </div>
+  
   );
 };
 
