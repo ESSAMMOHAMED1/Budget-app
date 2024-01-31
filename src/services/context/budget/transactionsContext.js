@@ -56,6 +56,7 @@ export const TransactionsProvider = ({ children }) => {
       fetchData();
     } catch (error) {
       disptch({ type: 'FETCH_ERROR', payload: error.message });
+      console.log(error);
     }
   };
 
