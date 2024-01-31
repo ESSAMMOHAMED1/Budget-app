@@ -67,3 +67,11 @@
   align-items: center;
   gap: 1rem;
 }
+.loading {
+  text-align: center;
+}
+
+.error {
+  text-align: center;
+  color: var(--color-error);
+}

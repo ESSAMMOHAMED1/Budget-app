@@ -5,7 +5,10 @@ import {
   useReducer,
   useRef,
 } from 'react';
-import { getTransactions } from '../../api/transactions.api';
+import {
+  deleteTransaction,
+  getTransactions,
+} from '../../api/transactions.api';
 
 export const transactionsContext = createContext();
 
@@ -23,6 +26,9 @@ const contextReducer = (state, action) => {
       return { ...state, loading: false, data: action.payload };
     case 'FETCH_ERROR':
       return { ...state, loading: false, error: action.payload };
+
+    case 'STOP_LOADING':
+      return { ...state, loading: false };
 
     default:
       return state;
@@ -43,6 +49,16 @@ export const TransactionsProvider = ({ children }) => {
     }
   }, []);
 
+  const handleDelete = async (id) => {
+    try {
+      disptch({ type: 'FETCH_START' });
+      await deleteTransaction(id);
+      fetchData();
+    } catch (error) {
+      disptch({ type: 'FETCH_ERROR', payload: error.message });
+    }
+  };
+
   useEffect(() => {
     if (!isMount.current) {
       fetchData();
@@ -51,7 +67,7 @@ export const TransactionsProvider = ({ children }) => {
   }, [fetchData]);
 
   return (
-    <transactionsContext.Provider value={{ ...state }}>
+    <transactionsContext.Provider value={{ ...state, handleDelete }}>
       {children}
     </transactionsContext.Provider>
   );
