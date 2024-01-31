@@ -1,7 +1,10 @@
+import BudgetPage from "./pages/BudgetPage";
+
 function App() {
   return (
-    <div className="App">
-    </div>
+    <>
+    <BudgetPage/>
+    </>
   );
 }
 
