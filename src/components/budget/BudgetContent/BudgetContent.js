@@ -1,13 +1,14 @@
 import React from 'react'
 import "./BudgetContent.css"
 import { Tabs , Tab } from '../../ui'
+import Transactions from './transactions/Transactions'
 const BudgetContent = () => {
   return (
     <div className="budget_content">
     <div className="container">
       <Tabs>
         <Tab title="data">
-          content1
+          <Transactions/>
         </Tab>
         <Tab title="income">
         content2
