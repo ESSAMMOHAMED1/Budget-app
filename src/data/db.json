@@ -1,7 +1,15 @@
 {
   "transactions": [
     {
-      "id": 1,
+      "id": "3",
+      "title": "Project x",
+      "amount": 900,
+      "type": "income",
+      "category": "2",
+      "date": "2022-01-22"
+    },
+    {
+      "id": "4",
       "title": "Rent",
       "amount": 1000,
       "type": "income",
@@ -9,61 +17,61 @@
       "date": "2021-10-13"
     },
     {
-      "id": 1,
-      "title": "Rent",
-      "amount": 1000,
-      "type": "income",
-      "category": "3",
-      "date": "2021-10-13"
+      "title": "test 22",
+      "amount": "44444",
+      "type": "expanse",
+      "category": "4",
+      "date": "2022-10-11",
+      "id": "6"
     },
     {
-      "id": 1,
-      "title": "Rent",
-      "amount": 1000,
+      "title": "test 2",
+      "amount": "40000",
       "type": "income",
-      "category": "3",
-      "date": "2021-10-13"
+      "category": "5",
+      "date": "2022-10-18",
+      "id": "7"
     },
     {
-      "id": 1,
-      "title": "Rent",
-      "amount": 1000,
+      "title": "test",
+      "amount": "500",
       "type": "income",
-      "category": "3",
-      "date": "2021-10-13"
+      "category": "7",
+      "date": "2022-10-21",
+      "id": "11"
     }
   ],
   "categories": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Business"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Monthly incom"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Investment"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Home Needs"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Bucket List"
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Savings"
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "Freelance"
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "Business"
     }
   ]

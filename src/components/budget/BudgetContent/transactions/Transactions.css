@@ -73,5 +73,6 @@
 
 .error {
   text-align: center;
-  color: var(--color-error);
+  color: #fff;
+  background-color: var(--color-error);
 }
