@@ -1,6 +1,11 @@
-import axiosApi from "./axiosApi";
+import axiosApi from './axiosApi';
 
 export const getTransactions = async () => {
-  const { data } = await axiosApi.get('/transactions')
-  return data
-}
+  const { data } = await axiosApi.get('/transactions');
+  return data;
+};
+
+export const deleteTransaction = async (id) => {
+  const { data } = await axiosApi.delete('/transactions/' + id);
+  return data;
+};

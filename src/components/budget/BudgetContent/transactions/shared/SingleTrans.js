@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { CurrencyDollar, PencilLine, Trash } from 'phosphor-react';
 import { Button } from '../../../../ui';
+import { transactionsContext } from '../../../../../services/context/budget/transactionsContext';
 
 const SingleTrans = ({ transaction }) => {
+  const { handleDelete } = useContext(transactionsContext);
+
   return (
     <div className="trans_item">
       <div
@@ -23,7 +26,7 @@ const SingleTrans = ({ transaction }) => {
         <Button icon>
           <PencilLine />
         </Button>
-        <Button type="error" icon>
+        <Button type="error" icon onClick={() => handleDelete(transaction.id)}>
           <Trash />
         </Button>
       </div>

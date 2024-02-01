@@ -11,13 +11,24 @@ const TransContent = () => {
 
   return (
     <div className="trans_content">
-      {transactions.map((transaction) => (
-        <SingleTrans transaction={transaction} key={transaction.id} />
-      ))}
+      {!loading && transactions && transactions.length && !error ? (
+        <>
+          {transactions.map((transaction) => (
+            <SingleTrans transaction={transaction} key={transaction.id} />
+          ))}
+        </>
+      ):(<></>)}
 
-      <p className="no-data"> No data </p>
-      {loading && <p> loading ... </p>}
-      {error && <p> {error} </p>}
+      {loading && <p className="loading">loading ...</p>}
+      
+      {error && !loading && <p className='error'>{error}</p>}
+
+      
+      {!loading && transactions && !transactions.length && !error && (
+        
+        <p className="no-data"> No data </p>
+          
+      )}
     </div>
   );
 };
