@@ -7,7 +7,7 @@ import LogoImg from '../../../assets/images/logo.png'
 const Header = () => {
 
   const [isScrolled, setIsScrolled] = useState(false)
-
+  const [showModal, setShowModal] = useState(false)
   const isMount = useRef(false)
   useEffect(() => {
     if (!isMount.current) {
@@ -42,12 +42,12 @@ const Header = () => {
           {/* action  */}
           <div className="header_actions">
             <div className="header_actions-add">
-              <Button> + </Button>
+            <Button onClick={() => setShowModal(true)}> + </Button>
             </div>
           </div>
         </div>
       </div>
-      <Modal visible={true}> <div> content </div> </Modal>
+      <Modal visible={showModal} closeModal={() => setShowModal(false)} > <div> content </div></Modal>
     </header>
   )
 }
