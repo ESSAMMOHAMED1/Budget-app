@@ -2,7 +2,11 @@ import React from 'react'
 import "./BudgetContent.css"
 import { Tabs , Tab } from '../../ui'
 import Transactions from './transactions/Transactions'
+import axiosApi from '../../../services/api/axiosApi'
 const BudgetContent = () => {
+  axiosApi.get("/transactions").then(res=>{
+    console.log(res);
+  })
   return (
     <div className="budget_content">
     <div className="container">
