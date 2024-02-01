@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './Header.css'
-import { Button } from '../../ui'
+import { Button, Modal } from '../../ui'
 import LogoImg from '../../../assets/images/logo.png'
 
 
@@ -47,6 +47,7 @@ const Header = () => {
           </div>
         </div>
       </div>
+      <Modal visibel={true}> <div>content </div> </Modal>
     </header>
   )
 }
