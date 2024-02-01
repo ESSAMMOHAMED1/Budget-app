@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './Header.css'
-
+import { Button } from '../../ui'
 import LogoImg from '../../../assets/images/logo.png'
 
 
@@ -42,7 +42,7 @@ const Header = () => {
           {/* action  */}
           <div className="header_actions">
             <div className="header_actions-add">
-              <button> + </button>
+              <Button> + </Button>
             </div>
           </div>
         </div>
