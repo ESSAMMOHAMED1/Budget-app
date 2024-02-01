@@ -47,7 +47,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <Modal visibel={true}> <div>content </div> </Modal>
+      <Modal visible={true}> <div> content </div> </Modal>
     </header>
   )
 }

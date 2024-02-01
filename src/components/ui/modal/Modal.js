@@ -7,6 +7,7 @@ const Modal = ({ visible, children}) => {
   if (!visible) {
     return null
   }
+
   return ReactDOM.createPortal(
     <div className="modal-overlay">
       <div className="modal">
