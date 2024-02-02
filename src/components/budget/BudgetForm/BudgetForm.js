@@ -1,9 +1,17 @@
-import { Button } from '../../ui';
-import React, { useContext, useState ,useCallback,useRef,useEffect } from 'react';
-import './BudgetForm.css';
-import { categoriesContext } from '../../../services/context/budget/categoriesContext';
-import {transactionsContext} from   '../../../services/context/budget/transactionsContext'
-import {postTransaction} from "../../../services/api/transactions.api"
+import { Button } from "../../ui"
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { postTransaction, updateTransaction } from "../../../services/api/transactions.api"
+import { categoriesContext } from "../../../services/context/budget/categoriesContext"
+import { transactionsContext } from "../../../services/context/budget/transactionsContext"
+import './BudgetForm.css'
+
+
+// "title": "Rent",
+// "amount": 1000,
+// "type": "income",
+// "category": "3",
+// "date": "2021-10-13"
+
 let initialState = {
   title: "",
   amount: '',
@@ -12,7 +20,11 @@ let initialState = {
   date: ""
 }
 
-const BudgetForm = ({ closeModal}) => {
+const BudgetForm = ({ closeModal, defaultData }) => {
+
+  if (defaultData) {
+    initialState = { ...defaultData }
+  }
 
   const [data, setData] = useState(initialState)
   const [validation, setValidation] = useState({
@@ -82,6 +94,17 @@ const BudgetForm = ({ closeModal}) => {
 
   const { fetchData } = useContext(transactionsContext)
 
+
+  const clearForm = () => {
+    setData({
+      title: "",
+      amount: '',
+      type: "income",
+      category: "",
+      date: ""
+    })
+  }
+
   const isMout = useRef(false)
 
   useEffect(() => {
@@ -92,6 +115,15 @@ const BudgetForm = ({ closeModal}) => {
       isMout.current = true
     }
   }, [handleValidation])
+
+
+  useEffect(() => {
+
+    if (!defaultData) {
+      clearForm()
+    }
+
+  }, [defaultData])
 
   const handleChange = (e) => {
 
@@ -117,7 +149,11 @@ const BudgetForm = ({ closeModal}) => {
     setLoading(true)
     try {
 
-      await postTransaction(data)
+      if (defaultData) {
+        await updateTransaction(defaultData.id, data)
+      } else {
+        await postTransaction(data)
+      }
       fetchData()
       setLoading(false)
       closeModal()
@@ -133,7 +169,7 @@ const BudgetForm = ({ closeModal}) => {
 
   return (
     <div className="new-budget">
-      <h2> Add new Budget</h2>
+      <h2> {defaultData ? 'Edit' : 'Add new'}  Budget</h2>
 
       <form className="form" onSubmit={handleSubmit}>
 
@@ -234,8 +270,8 @@ const BudgetForm = ({ closeModal}) => {
           )}
         </div>
 
-        <Button size="large" block disabled={!validation.isValid} >
-          Save
+        <Button size="large" block disabled={!validation.isValid || loading} >
+          {defaultData ? 'Edit' : 'Save'}
         </Button>
 
       </form>
