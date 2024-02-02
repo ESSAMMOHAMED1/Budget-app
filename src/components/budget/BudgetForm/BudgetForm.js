@@ -1,95 +1,141 @@
 import { Button } from '../../ui';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState ,useCallback,useRef,useEffect } from 'react';
 import './BudgetForm.css';
 import { categoriesContext } from '../../../services/context/budget/categoriesContext';
-
-const initialState = {
-  title: 'dddd',
+import {transactionsContext} from   '../../../services/context/budget/transactionsContext'
+import {postTransaction} from "../../../services/api/transactions.api"
+let initialState = {
+  title: "",
   amount: '',
-  type: 'income',
-  category: '',
-  date: '',
-};
+  type: "income",
+  category: "",
+  date: ""
+}
 
-const BudgetForm = () => {
-  const [data, setData] = useState(initialState);
+const BudgetForm = ({ closeModal}) => {
+
+  const [data, setData] = useState(initialState)
   const [validation, setValidation] = useState({
     isValid: false,
     touched: false,
-    data: {}, // title : {isValid , touched , error }
-  });
+    data: {} // title : {isValid , touched , error }
+  })
 
-  const { data: categories, loading: catLoading } =
-    useContext(categoriesContext);
+  const [loading, setLoading] = useState(false)
 
-  const handleValidation = (touchedKey) => {
-    let vdata = { ...validation };
-    vdata.isValid = true;
-    vdata.touched = true;
+  const { data: categories, loading: catLoading } = useContext(categoriesContext)
 
-    const stateData = { ...data };
 
-    Object.keys(stateData).forEach((key) => {
-      let isValid = true;
-      let error = null;
-      let touched = vdata.data[key]?.touched || false;
+  const handleValidation = useCallback((touchedKey) => {
+    let vdata = { ...validation }
+    vdata.isValid = true
+    vdata.touched = true
+
+    const stateData = { ...data }
+    if (stateData.id) {
+      delete stateData.id
+    }
+
+
+    Object.keys(stateData).forEach(key => {
+      let isValid = true
+      let error = null
+      let touched = vdata.data[key]?.touched || false
 
       if (touchedKey && touchedKey === key) {
-        touched = true;
+        touched = true
       }
 
       if (!data[key] || !data[key].trim) {
-        isValid = false;
-        error = 'Field is required!';
+        isValid = false
+        error = 'Field is required!'
       }
 
       if (key === 'amount' && data[key] && isNaN(data[key])) {
-        isValid = false;
-        error = 'Please add a valid number';
+        isValid = false
+        error = 'Please add a valid number'
       }
 
-      if (
-        key === 'amount' &&
-        data[key] &&
-        !isNaN(data[key]) &&
-        +data[key] <= 0
-      ) {
-        isValid = false;
-        error = 'Please add a number bigger than zero';
+      if (key === 'amount' && data[key] && !isNaN(data[key]) && +data[key] <= 0) {
+        isValid = false
+        error = 'Please add a number bigger than zero'
       }
 
       if (!touched) {
-        vdata.touched = false;
-        error = null;
+        vdata.touched = false
+        error = null
       }
 
-      vdata.data[key] = { isValid, error, touched };
+      vdata.data[key] = { isValid, error, touched }
       if (!isValid) {
-        vdata.isValid = false;
+        vdata.isValid = false
       }
-    });
 
-    setValidation(vdata);
-  };
-  console.log({ validation });
+
+    })
+
+    setValidation(vdata)
+
+
+
+  }, [data, validation])
+
+  const { fetchData } = useContext(transactionsContext)
+
+  const isMout = useRef(false)
+
+  useEffect(() => {
+    if (!isMout.current) {
+
+      handleValidation()
+
+      isMout.current = true
+    }
+  }, [handleValidation])
 
   const handleChange = (e) => {
-    setData((d) => {
+
+    setValidation(d => {
+      d.data[e.target.name].error = null
+      return d
+    })
+
+    setData(d => {
       return {
         ...d,
-        [e.target.name]: e.target.value,
-      };
-    });
-  };
+        [e.target.name]: e.target.value
+      }
+    })
+  }
   const handleBlur = (e) => {
-    handleValidation(e.target.name);
-  };
+    handleValidation(e.target.name)
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    setLoading(true)
+    try {
+
+      await postTransaction(data)
+      fetchData()
+      setLoading(false)
+      closeModal()
+    } catch (error) {
+      console.log(error.message)
+      setLoading(false)
+    }
+
+  }
+
+  console.log(validation)
+
 
   return (
     <div className="new-budget">
-      <h2>Budget</h2>
+      <h2> Add new Budget</h2>
 
-      <form className="form">
+      <form className="form" onSubmit={handleSubmit}>
 
         <div className="form-group">
           <label htmlFor="title" > Title</label>
@@ -194,7 +240,7 @@ const BudgetForm = () => {
 
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default BudgetForm;
+export default BudgetForm
