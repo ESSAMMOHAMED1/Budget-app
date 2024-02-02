@@ -1,8 +1,11 @@
 import { Button } from '../../ui' 
-import React from 'react'
+import React, { useContext } from 'react'
 import './BudgetForm.css'
+import { categoriesContext } from '../../../services/context/budget/categoriesContext'
 
 const BudgetForm = () => {
+  const { data: categories, loading: catLoading } = useContext(categoriesContext)
+
   return (
     <div className="new-budget">
       <h2> Add new Budget</h2>
@@ -49,19 +52,25 @@ const BudgetForm = () => {
             <p className="error"> errors </p>
           </div>
 
-          <div className="form-group">
-            <label htmlFor="category" > Category</label>
-            <select
-              id="category"
-              name="category"
-              className=""
-              placeholder='category...'
-            >
-              <option value=''> Select Category </option>
-              <option value='expanse'> Expanse </option>
-            </select>
-            <p className="error"> errors </p>
-          </div>
+          {catLoading ? <p> loading</p> : (
+            <div className="form-group">
+              <label htmlFor="category" > Category</label>
+              <select
+                id="category"
+                name="category"
+                className=""
+                placeholder='category...'
+              >
+                <option value=''> Select Category </option>
+                {categories.map(cat => (
+                  <option key={cat.id} value={cat.id}> {cat.name} </option>
+                ))
+
+                }
+              </select>
+              <p className="error"> errors </p>
+            </div>
+          )}
 
         </div>
 
