@@ -1,5 +1,6 @@
 import { createContext, useCallback, useEffect, useReducer, useRef } from "react";
-import { getCategories } from "../../api/categories.api";
+import { getCategories } from "services/apis/categories.api";
+
 
 export const categoriesContext = createContext()
 

@@ -1,5 +1,6 @@
-const Tab = ({ children }) => {
-  return children;
-};
 
-export default Tab;
+const Tab = ({ children }) => {
+  return children
+}
+
+export default Tab

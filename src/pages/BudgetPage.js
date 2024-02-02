@@ -1,15 +1,16 @@
-import React from 'react';
-import Mainlayout from '../layout/Mainlayout';
-import Hero from '../components/budget/hero/Hero';
-import BudgetContent from '../components/budget/BudgetContent/BudgetContent';
+import React from 'react'
+import MainLayout from 'layout/MainLayout'
+
+import Hero from "components/budget/hero/Hero"
+import BudgetContent from "components/budget/BudgetContent/BudgetContent"
 
 const BudgetPage = () => {
   return (
-    <Mainlayout>
+    <MainLayout>
       <Hero />
       <BudgetContent />
-    </Mainlayout>
-  );
-};
+    </MainLayout>
+  )
+}
 
-export default BudgetPage;
+export default BudgetPage

@@ -1,8 +1,8 @@
-import { Button } from "../../ui"
+import { Button } from "components/ui"
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
-import { postTransaction, updateTransaction } from "../../../services/api/transactions.api"
-import { categoriesContext } from "../../../services/context/budget/categoriesContext"
-import { transactionsContext } from "../../../services/context/budget/transactionsContext"
+import { postTransaction, updateTransaction } from "services/apis/transactions.api"
+import { categoriesContext } from "services/context/budget/categoriesContext"
+import { transactionsContext } from "services/context/budget/transactionsContext"
 import './BudgetForm.css'
 
 
