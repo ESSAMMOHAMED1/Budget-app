@@ -1,14 +1,6 @@
 {
   "transactions": [
     {
-      "id": "3",
-      "title": "Project x",
-      "amount": 900,
-      "type": "income",
-      "category": "2",
-      "date": "2022-01-22"
-    },
-    {
       "id": "4",
       "title": "Rent",
       "amount": 1000,
