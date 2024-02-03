@@ -158,13 +158,12 @@ const BudgetForm = ({ closeModal, defaultData }) => {
       setLoading(false)
       closeModal()
     } catch (error) {
-      console.log(error.message)
       setLoading(false)
     }
 
   }
 
-  console.log(validation)
+  
 
 
   return (

@@ -72,7 +72,7 @@ const BudgetContent = () => {
   }, [transactions, catData])
 
 
-  console.log(chartData)
+  
 
 
   return (
