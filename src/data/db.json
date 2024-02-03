@@ -1,12 +1,20 @@
 {
   "transactions": [
     {
-      "title": "test 22",
-      "amount": "44444",
+      "id": "3",
+      "title": "Project x",
+      "amount": 900,
       "type": "income",
-      "category": "4",
-      "date": "2022-10-11",
-      "id": "6"
+      "category": "2",
+      "date": "2022-01-22"
+    },
+    {
+      "id": "4",
+      "title": "Rent",
+      "amount": 1000,
+      "type": "income",
+      "category": "3",
+      "date": "2021-10-13"
     },
     {
       "title": "test 2",
@@ -17,60 +25,28 @@
       "id": "7"
     },
     {
+      "title": "dddddd",
+      "amount": "3333",
+      "type": "income",
+      "category": "2",
+      "date": "2022-10-21",
+      "id": "8"
+    },
+    {
+      "title": "monthly save",
+      "amount": "1111",
+      "type": "expanse",
+      "category": "6",
+      "date": "2022-10-13",
+      "id": "9"
+    },
+    {
       "title": "test",
       "amount": "500",
       "type": "income",
       "category": "7",
       "date": "2022-10-21",
       "id": "11"
-    },
-    {
-      "id": "3b89",
-      "title": "we",
-      "amount": "12",
-      "type": "expanse",
-      "category": "2",
-      "date": "2024-02-07"
-    },
-    {
-      "id": "cc72",
-      "title": "q1231231221321",
-      "amount": "112",
-      "type": "expanse",
-      "category": "3",
-      "date": "2024-02-04"
-    },
-    {
-      "id": "c18d",
-      "title": "12",
-      "amount": "12",
-      "type": "expanse",
-      "category": "3",
-      "date": "111111-01-02"
-    },
-    {
-      "id": "576e",
-      "title": "sa",
-      "amount": "12",
-      "type": "income",
-      "category": "4",
-      "date": "2024-02-07"
-    },
-    {
-      "id": "acf8",
-      "title": "12",
-      "amount": "",
-      "type": "income",
-      "category": "",
-      "date": ""
-    },
-    {
-      "id": "9c1e",
-      "title": "1",
-      "amount": "1221",
-      "type": "expanse",
-      "category": "3",
-      "date": "1111-11-11"
     }
   ],
   "categories": [

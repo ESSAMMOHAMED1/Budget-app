@@ -1,9 +1,9 @@
-import React, { useContext, useMemo,useState } from 'react';
+import React, { useContext, useMemo, useState } from 'react'
 
-import { CurrencyDollar, PencilLine, Trash } from 'phosphor-react';
-import { Button,Modal } from '../../../../ui';
-import { transactionsContext } from '../../../../../services/context/budget/transactionsContext';
-import BudgetForm from '../../../BudgetForm/BudgetForm';
+import { CurrencyDollar, PencilLine, Trash } from 'phosphor-react'
+import { Button, Modal } from 'components/ui'
+import { transactionsContext } from "services/context/budget/transactionsContext"
+import BudgetForm from "components/budget/BudgetForm/BudgetForm"
 
 const SingleTrans = ({ transaction, categories }) => {
 

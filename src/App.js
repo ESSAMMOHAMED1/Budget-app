@@ -1,9 +1,9 @@
-import BudgetPage from "./pages/BudgetPage";
+import BudgetPage from "pages/BudgetPage";
 
 function App() {
   return (
     <>
-    <BudgetPage/>
+      <BudgetPage />
     </>
   );
 }
