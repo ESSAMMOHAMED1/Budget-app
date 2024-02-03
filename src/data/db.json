@@ -1,14 +1,6 @@
 {
   "transactions": [
     {
-      "id": "4",
-      "title": "Rent",
-      "amount": 1000,
-      "type": "income",
-      "category": "3",
-      "date": "2021-10-13"
-    },
-    {
       "title": "test 22",
       "amount": "44444",
       "type": "expanse",
