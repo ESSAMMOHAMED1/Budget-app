@@ -1,17 +1,9 @@
 {
   "transactions": [
     {
-      "id": "4",
-      "title": "Rent",
-      "amount": 1000,
-      "type": "income",
-      "category": "3",
-      "date": "2021-10-13"
-    },
-    {
       "title": "test 22",
       "amount": "44444",
-      "type": "expanse",
+      "type": "income",
       "category": "4",
       "date": "2022-10-11",
       "id": "6"
@@ -42,9 +34,9 @@
     },
     {
       "id": "cc72",
-      "title": "q",
+      "title": "q1231231221321",
       "amount": "112",
-      "type": "income",
+      "type": "expanse",
       "category": "3",
       "date": "2024-02-04"
     },
@@ -55,6 +47,30 @@
       "type": "expanse",
       "category": "3",
       "date": "111111-01-02"
+    },
+    {
+      "id": "576e",
+      "title": "sa",
+      "amount": "12",
+      "type": "income",
+      "category": "4",
+      "date": "2024-02-07"
+    },
+    {
+      "id": "acf8",
+      "title": "12",
+      "amount": "",
+      "type": "income",
+      "category": "",
+      "date": ""
+    },
+    {
+      "id": "9c1e",
+      "title": "1",
+      "amount": "1221",
+      "type": "expanse",
+      "category": "3",
+      "date": "1111-11-11"
     }
   ],
   "categories": [
