@@ -68,7 +68,7 @@ export const TransactionsProvider = ({ children }) => {
   }, [fetchData]);
 
   return (
-    <transactionsContext.Provider value={{ ...state, handleDelete }}>
+    <transactionsContext.Provider value={{ ...state, handleDelete ,fetchData}}>
       {children}
     </transactionsContext.Provider>
   );

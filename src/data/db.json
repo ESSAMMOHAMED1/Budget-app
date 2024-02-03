@@ -31,6 +31,30 @@
       "category": "7",
       "date": "2022-10-21",
       "id": "11"
+    },
+    {
+      "id": "3b89",
+      "title": "we",
+      "amount": "12",
+      "type": "expanse",
+      "category": "2",
+      "date": "2024-02-07"
+    },
+    {
+      "id": "cc72",
+      "title": "q",
+      "amount": "112",
+      "type": "income",
+      "category": "3",
+      "date": "2024-02-04"
+    },
+    {
+      "id": "c18d",
+      "title": "12",
+      "amount": "12",
+      "type": "expanse",
+      "category": "3",
+      "date": "111111-01-02"
     }
   ],
   "categories": [
