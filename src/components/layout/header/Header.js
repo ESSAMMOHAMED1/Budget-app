@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './Header.css'
 
-import LogoImg from 'assets/images/logo.png'
+import LogoImg from '../../../assets/images/logo.png'
 
-import { Button, Modal } from "components/ui"
+import { Button, Modal } from "../../ui"
 
-import BudgetForm from 'components/budget/BudgetForm/BudgetForm'
+import BudgetForm from '../../../components/budget/BudgetForm/BudgetForm'
 
 
 const Header = () => {

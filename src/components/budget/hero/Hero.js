@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import './Hero.css'
 
-import BudgetNumber from "./BudgetNumber"
+import BudgetNumber from "../hero/BudgetNumber"
 
 import { Coins, Wallet, CreditCard } from 'phosphor-react'
-import { transactionsContext } from "services/context/budget/transactionsContext"
+import { transactionsContext } from "../../../services/context/budget/transactionsContext"
 
 const Hero = () => {
 

@@ -1,8 +1,8 @@
 import React from 'react'
-import MainLayout from 'layout/MainLayout'
+import MainLayout from '../layout/MainLayout'
 
-import Hero from "components/budget/hero/Hero"
-import BudgetContent from "components/budget/BudgetContent/BudgetContent"
+import Hero from "../components/budget/hero/Hero"
+import BudgetContent from "../components/budget/BudgetContent/BudgetContent"
 
 const BudgetPage = () => {
   return (

@@ -1,5 +1,5 @@
 import { createContext, useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react";
-import { deleteTransaction, getTransactions } from "services/apis/transactions.api";
+import { deleteTransaction, getTransactions } from "../../apis/transactions.api";
 
 
 export const transactionsContext = createContext()

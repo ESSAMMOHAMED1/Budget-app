@@ -1,8 +1,8 @@
 import React from 'react'
 import './Transactions.css'
 
-import TransHeader from "./shared/TransHeader"
-import TransContent from "./shared/TransContent"
+import TransHeader from "../transactions/shared/TransHeader"
+import TransContent from "../transactions/shared/TransContent"
 
 const Transactions = () => {
   return (

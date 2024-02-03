@@ -1,12 +1,12 @@
 import React, { useContext, useMemo } from 'react'
 
 import './BudgetContent.css'
-import { Tabs, Tab } from 'components/ui'
+import { Tabs, Tab } from '../../ui'
 
-import Transactions from "./transactions/Transactions"
-import { transactionsContext } from "services/context/budget/transactionsContext"
-import { categoriesContext } from "services/context/budget/categoriesContext"
-import DougnutChart from "components/ui/DougnutChart/DougnutChart"
+import Transactions from "../BudgetContent/transactions/Transactions"
+import { transactionsContext } from "../../../services/context/budget/transactionsContext"
+import { categoriesContext } from "../../../services/context/budget/categoriesContext"
+import DougnutChart from "../../ui/DougnutChart/DougnutChart"
 
 
 const incomeColors = [

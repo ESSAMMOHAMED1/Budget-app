@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import { categoriesContext } from "services/context/budget/categoriesContext"
-import { transactionsContext } from "services/context/budget/transactionsContext"
+import { categoriesContext } from "../../../../../services/context/budget/categoriesContext"
+import { transactionsContext } from "../../../../../services/context/budget/transactionsContext"
 
 
 import SingleTrans from "./SingleTrans"
