@@ -1,33 +1,41 @@
-import React, { useEffect, useRef, useState } from 'react';
-import './Header.css';
-import { Button, Modal } from '../../ui';
-import LogoImg from '../../../assets/images/logo.png';
-import BudgetForm from '../../budget/BudgetForm/BudgetForm';
+import React, { useEffect, useRef, useState } from 'react'
+import './Header.css'
+
+import LogoImg from 'assets/images/logo.png'
+
+import { Button, Modal } from "components/ui"
+
+import BudgetForm from 'components/budget/BudgetForm/BudgetForm'
+
 
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const isMount = useRef(false);
+
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [showModal, setShowModal] = useState(false)
+
+  const isMount = useRef(false)
   useEffect(() => {
     if (!isMount.current) {
+
       if (window.scrollY > 60) {
-        setIsScrolled(true);
+        setIsScrolled(true)
       }
 
       window.addEventListener('scroll', () => {
         if (window.scrollY > 60) {
-          setIsScrolled(true);
+          setIsScrolled(true)
         } else {
-          setIsScrolled(false);
+          setIsScrolled(false)
         }
-      });
+      })
 
-      isMount.current = true;
+      isMount.current = true
     }
-  }, []);
+  }, [])
   return (
     <header className={` header  ${isScrolled ? 'scrolled' : ''} `}>
       <div className="container">
+
         <div className="header_row">
           {/* brand  */}
           <div className="header_brand">
@@ -44,11 +52,11 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <Modal visible={showModal} closeModal={() => setShowModal(false)}>
+      <Modal visible={showModal} closeModal={() => setShowModal(false)} >
         <BudgetForm closeModal={() => setShowModal(false)} />
       </Modal>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

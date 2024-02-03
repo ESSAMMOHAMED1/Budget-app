@@ -1,95 +1,177 @@
-import { Button } from '../../ui';
-import React, { useContext, useState } from 'react';
-import './BudgetForm.css';
-import { categoriesContext } from '../../../services/context/budget/categoriesContext';
+import { Button } from "components/ui"
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { postTransaction, updateTransaction } from "services/apis/transactions.api"
+import { categoriesContext } from "services/context/budget/categoriesContext"
+import { transactionsContext } from "services/context/budget/transactionsContext"
+import './BudgetForm.css'
 
-const initialState = {
-  title: 'dddd',
+
+// "title": "Rent",
+// "amount": 1000,
+// "type": "income",
+// "category": "3",
+// "date": "2021-10-13"
+
+let initialState = {
+  title: "",
   amount: '',
-  type: 'income',
-  category: '',
-  date: '',
-};
+  type: "income",
+  category: "",
+  date: ""
+}
 
-const BudgetForm = () => {
-  const [data, setData] = useState(initialState);
+const BudgetForm = ({ closeModal, defaultData }) => {
+
+  if (defaultData) {
+    initialState = { ...defaultData }
+  }
+
+  const [data, setData] = useState(initialState)
   const [validation, setValidation] = useState({
     isValid: false,
     touched: false,
-    data: {}, // title : {isValid , touched , error }
-  });
+    data: {} // title : {isValid , touched , error }
+  })
 
-  const { data: categories, loading: catLoading } =
-    useContext(categoriesContext);
+  const [loading, setLoading] = useState(false)
 
-  const handleValidation = (touchedKey) => {
-    let vdata = { ...validation };
-    vdata.isValid = true;
-    vdata.touched = true;
+  const { data: categories, loading: catLoading } = useContext(categoriesContext)
 
-    const stateData = { ...data };
 
-    Object.keys(stateData).forEach((key) => {
-      let isValid = true;
-      let error = null;
-      let touched = vdata.data[key]?.touched || false;
+  const handleValidation = useCallback((touchedKey) => {
+    let vdata = { ...validation }
+    vdata.isValid = true
+    vdata.touched = true
+
+    const stateData = { ...data }
+    if (stateData.id) {
+      delete stateData.id
+    }
+
+
+    Object.keys(stateData).forEach(key => {
+      let isValid = true
+      let error = null
+      let touched = vdata.data[key]?.touched || false
 
       if (touchedKey && touchedKey === key) {
-        touched = true;
+        touched = true
       }
 
       if (!data[key] || !data[key].trim) {
-        isValid = false;
-        error = 'Field is required!';
+        isValid = false
+        error = 'Field is required!'
       }
 
       if (key === 'amount' && data[key] && isNaN(data[key])) {
-        isValid = false;
-        error = 'Please add a valid number';
+        isValid = false
+        error = 'Please add a valid number'
       }
 
-      if (
-        key === 'amount' &&
-        data[key] &&
-        !isNaN(data[key]) &&
-        +data[key] <= 0
-      ) {
-        isValid = false;
-        error = 'Please add a number bigger than zero';
+      if (key === 'amount' && data[key] && !isNaN(data[key]) && +data[key] <= 0) {
+        isValid = false
+        error = 'Please add a number bigger than zero'
       }
 
       if (!touched) {
-        vdata.touched = false;
-        error = null;
+        vdata.touched = false
+        error = null
       }
 
-      vdata.data[key] = { isValid, error, touched };
+      vdata.data[key] = { isValid, error, touched }
       if (!isValid) {
-        vdata.isValid = false;
+        vdata.isValid = false
       }
-    });
 
-    setValidation(vdata);
-  };
-  console.log({ validation });
+
+    })
+
+    setValidation(vdata)
+
+
+
+  }, [data, validation])
+
+  const { fetchData } = useContext(transactionsContext)
+
+
+  const clearForm = () => {
+    setData({
+      title: "",
+      amount: '',
+      type: "income",
+      category: "",
+      date: ""
+    })
+  }
+
+  const isMout = useRef(false)
+
+  useEffect(() => {
+    if (!isMout.current) {
+
+      handleValidation()
+
+      isMout.current = true
+    }
+  }, [handleValidation])
+
+
+  useEffect(() => {
+
+    if (!defaultData) {
+      clearForm()
+    }
+
+  }, [defaultData])
 
   const handleChange = (e) => {
-    setData((d) => {
+
+    setValidation(d => {
+      d.data[e.target.name].error = null
+      return d
+    })
+
+    setData(d => {
       return {
         ...d,
-        [e.target.name]: e.target.value,
-      };
-    });
-  };
+        [e.target.name]: e.target.value
+      }
+    })
+  }
   const handleBlur = (e) => {
-    handleValidation(e.target.name);
-  };
+    handleValidation(e.target.name)
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    setLoading(true)
+    try {
+
+      if (defaultData) {
+        await updateTransaction(defaultData.id, data)
+      } else {
+        await postTransaction(data)
+      }
+      fetchData()
+      setLoading(false)
+      closeModal()
+    } catch (error) {
+      console.log(error.message)
+      setLoading(false)
+    }
+
+  }
+
+  console.log(validation)
+
 
   return (
     <div className="new-budget">
-      <h2>Budget</h2>
+      <h2> {defaultData ? 'Edit' : 'Add new'}  Budget</h2>
 
-      <form className="form">
+      <form className="form" onSubmit={handleSubmit}>
 
         <div className="form-group">
           <label htmlFor="title" > Title</label>
@@ -188,13 +270,13 @@ const BudgetForm = () => {
           )}
         </div>
 
-        <Button size="large" block disabled={!validation.isValid} >
-          Save
+        <Button size="large" block disabled={!validation.isValid || loading} >
+          {defaultData ? 'Edit' : 'Save'}
         </Button>
 
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default BudgetForm;
+export default BudgetForm

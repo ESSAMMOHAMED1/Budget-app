@@ -1,11 +1,16 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useContext, useMemo, useState } from 'react'
 
-import { CurrencyDollar, PencilLine, Trash } from 'phosphor-react';
-import { Button } from '../../../../ui';
-import { transactionsContext } from '../../../../../services/context/budget/transactionsContext';
+import { CurrencyDollar, PencilLine, Trash } from 'phosphor-react'
+import { Button, Modal } from 'components/ui'
+import { transactionsContext } from "services/context/budget/transactionsContext"
+import BudgetForm from "components/budget/BudgetForm/BudgetForm"
 
-const SingleTrans = ({ transaction,categories}) => {
-  const { handleDelete } = useContext(transactionsContext);
+const SingleTrans = ({ transaction, categories }) => {
+
+  const { handleDelete } = useContext(transactionsContext)
+
+  const [showModal, setShowModal] = useState(false)
+
 
   const currentCat = useMemo(() => {
     // eslint-disable-next-line eqeqeq
@@ -20,9 +25,8 @@ const SingleTrans = ({ transaction,categories}) => {
 
   return (
     <div className="trans_item">
-      <div
-        className={`trans_item-icon ${transaction.type === 'expanse' ? 'error' : ''}`}
-      >
+
+      <div className={`trans_item-icon ${transaction.type === 'expanse' ? 'error' : ''}`}>
         <CurrencyDollar />
       </div>
       <div className="trans_item-data">
@@ -32,17 +36,23 @@ const SingleTrans = ({ transaction,categories}) => {
           <small>{transaction.date}</small>,
           <small> {currentCat}</small>
         </div>
+
       </div>
       <div className="trans_item-cta">
-        <Button icon>
+
+        <Button icon onClick={() => setShowModal(true)}>
           <PencilLine />
         </Button>
         <Button type="error" icon onClick={() => handleDelete(transaction.id)}>
           <Trash />
         </Button>
       </div>
-    </div>
-  );
-};
 
-export default SingleTrans;
+      <Modal visible={showModal} closeModal={() => setShowModal(false)} >
+        <BudgetForm closeModal={() => setShowModal(false)} defaultData={transaction} />
+      </Modal>
+    </div>
+  )
+}
+
+export default SingleTrans
